@@ -5,42 +5,232 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>青岛城市基层党建实训基地师资库</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: #f5f7fa; color: #333; }
-        .header { background: linear-gradient(135deg, #c41230 0%, #8b0000 100%); color: white; padding: 30px 20px; text-align: center; }
-        .header h1 { font-size: 28px; margin-bottom: 10px; }
-        .header p { font-size: 14px; opacity: 0.9; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .card { background: white; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .card h2 { color: #c41230; font-size: 20px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0; }
-        .btn { display: inline-block; padding: 12px 30px; background: #c41230; color: white; text-decoration: none; border-radius: 5px; font-size: 16px; transition: all 0.3s; border: none; cursor: pointer; }
-        .btn:hover { background: #a01028; transform: translateY(-2px); }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .stat-card { background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%); padding: 20px; border-radius: 8px; text-align: center; border-left: 4px solid #c41230; }
-        .stat-card h3 { color: #666; font-size: 14px; margin-bottom: 10px; }
-        .stat-card .number { font-size: 36px; font-weight: bold; color: #c41230; }
-        .search-box { width: 100%; padding: 15px 20px; font-size: 16px; border: 2px solid #e0e0e0; border-radius: 8px; margin-bottom: 15px; transition: border-color 0.3s; }
-        .search-box:focus { outline: none; border-color: #c41230; }
-        .ai-result { background: #f8f8f8; padding: 20px; border-radius: 8px; margin-top: 20px; display: none; }
-        .ai-result.show { display: block; }
-        .ai-result h4 { color: #c41230; margin-bottom: 15px; }
-        .ai-result table { width: 100%; border-collapse: collapse; margin: 15px 0; }
-        .ai-result th, .ai-result td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
-        .ai-result th { background: #c41230; color: white; }
-        .loading { text-align: center; padding: 20px; display: none; }
-        .loading.show { display: block; }
-        .spinner { border: 3px solid #f3f3f3; border-top: 3px solid #c41230; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .example-queries { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
-        .example-query { background: #f0f0f0; padding: 8px 15px; border-radius: 20px; font-size: 13px; cursor: pointer; transition: all 0.3s; }
-        .example-query:hover { background: #c41230; color: white; }
-        .instructions { background: #fffbeb; border-left: 4px solid #ffc107; padding: 15px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
-        .instructions h4 { color: #856404; margin-bottom: 10px; }
-        .instructions ol { margin-left: 20px; color: #856404; }
-        .instructions li { margin-bottom: 5px; }
-        .footer { text-align: center; padding: 20px; color: #999; font-size: 12px; }
-        .course-tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 12px; margin-right: 5px; background: #f5f5f5; color: #666; }
-        @media (max-width: 768px) { .header h1 { font-size: 22px; } .container { padding: 15px; } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+        .header {
+            background: linear-gradient(135deg, #c41230 0%, #8b0000 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .card h2 {
+            color: #c41230;
+            font-size: 20px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #c41230;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #a01028;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: white;
+            color: #c41230;
+            border: 2px solid #c41230;
+        }
+        .btn-outline:hover {
+            background: #c41230;
+            color: white;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #c41230;
+        }
+        .stat-card h3 {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .stat-card .number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #c41230;
+        }
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: border-color 0.3s;
+        }
+        .search-box:focus {
+            outline: none;
+            border-color: #c41230;
+        }
+        .result-container {
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+        .result-container.show {
+            display: block;
+        }
+        .result-container h4 {
+            color: #c41230;
+            margin-bottom: 15px;
+        }
+        .result-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .result-container th, .result-container td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .result-container th {
+            background: #c41230;
+            color: white;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+        .loading.show {
+            display: block;
+        }
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #c41230;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .example-queries {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .example-query {
+            background: #f0f0f0;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .example-query:hover {
+            background: #c41230;
+            color: white;
+        }
+        .instructions {
+            background: #fffbeb;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .instructions h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        .instructions ol {
+            margin-left: 20px;
+            color: #856404;
+        }
+        .instructions li {
+            margin-bottom: 5px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 12px;
+        }
+        .course-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-right: 5px;
+            background: #f5f5f5;
+            color: #666;
+        }
+        .teacher-info {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #c41230;
+        }
+        .teacher-info h5 {
+            color: #c41230;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .teacher-info p {
+            margin-bottom: 5px;
+            color: #666;
+        }
+        .teacher-info strong {
+            color: #333;
+        }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 22px; }
+            .container { padding: 15px; }
+        }
     </style>
 </head>
 <body>
@@ -50,96 +240,427 @@
     </div>
 
     <div class="container">
+        <!-- 统计卡片 -->
         <div class="grid">
-            <div class="stat-card"><h3>师资总数</h3><div class="number" id="teacherCount">--</div></div>
-            <div class="stat-card"><h3>课程总数</h3><div class="number" id="courseCount">--</div></div>
+            <div class="stat-card">
+                <h3>师资总数</h3>
+                <div class="number" id="teacherCount">--</div>
+            </div>
+            <div class="stat-card">
+                <h3>课程总数</h3>
+                <div class="number" id="courseCount">--</div>
+            </div>
         </div>
 
+        <!-- 教师搜索 -->
+        <div class="card">
+            <h2>👨‍🏫 教师搜索</h2>
+            <p style="color: #666; margin-bottom: 15px;">
+                输入教师姓名，查询教师信息、简介、可授课程及联系方式
+            </p>
+            
+            <input type="text" class="search-box" id="teacherSearchInput"
+                placeholder="输入教师姓名，如：王存福">
+            
+            <div style="margin-top: 20px;">
+                <button class="btn" onclick="searchTeacher()">🔍 搜索教师</button>
+            </div>
+
+            <div class="loading" id="teacherLoading">
+                <div class="spinner"></div>
+                <p style="margin-top: 10px; color: #666;">正在搜索...</p>
+            </div>
+
+            <div class="result-container" id="teacherResult">
+                <h4>📋 教师信息</h4>
+                <div id="teacherResultContent"></div>
+            </div>
+        </div>
+
+        <!-- 课程主题AI搜索 -->
+        <div class="card">
+            <h2>🎯 课程主题搜索</h2>
+            <p style="color: #666; margin-bottom: 15px;">
+                输入课程主题，AI将为您匹配合适的课程和教师
+            </p>
+            
+            <input type="text" class="search-box" id="topicSearchInput"
+                placeholder="输入课程主题，如：四中全会、习近平文化思想">
+            
+            <div class="example-queries">
+                <span style="color: #666; margin-right: 10px;">试试：</span>
+                <span class="example-query" onclick="useTopicExample(this)">四中全会</span>
+                <span class="example-query" onclick="useTopicExample(this)">习近平文化思想</span>
+                <span class="example-query" onclick="useTopicExample(this)">党纪学习教育</span>
+                <span class="example-query" onclick="useTopicExample(this)">基层治理</span>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button class="btn" onclick="searchTopic()">🔍 AI智能匹配</button>
+            </div>
+
+            <div class="loading" id="topicLoading">
+                <div class="spinner"></div>
+                <p style="margin-top: 10px; color: #666;">AI正在分析并匹配课程...</p>
+            </div>
+
+            <div class="result-container" id="topicResult">
+                <h4>📋 匹配结果</h4>
+                <div id="topicResultContent"></div>
+            </div>
+        </div>
+
+        <!-- AI智能搜索（组成课程） -->
         <div class="card">
             <h2>🤖 AI智能推荐教学计划</h2>
-            <p style="color: #666; margin-bottom: 15px;">描述您的需求，AI将为您匹配合适的课程并生成教学计划建议</p>
-            <textarea class="search-box" id="searchInput" rows="4" placeholder="例如：给我设计一天的针对入党积极分子的课程，上午一节理论课关于章程学习，下午观摩课关于红色教育基地"></textarea>
+            <p style="color: #666; margin-bottom: 15px;">
+                描述您的需求，AI将为您匹配合适的课程并生成教学计划建议
+            </p>
+            
+            <textarea class="search-box" id="searchInput" rows="4" 
+                placeholder="例如：给我设计一天的针对入党积极分子的课程，上午一节理论课关于章程学习，下午观摩课关于红色教育基地"></textarea>
+            
             <div class="example-queries">
                 <span style="color: #666; margin-right: 10px;">试试：</span>
                 <span class="example-query" onclick="useExample(this)">半天入党积极分子培训</span>
                 <span class="example-query" onclick="useExample(this)">一天党组织书记培训班</span>
                 <span class="example-query" onclick="useExample(this)">党史教育专题学习</span>
             </div>
+
             <div style="margin-top: 20px;">
                 <button class="btn" onclick="searchWithAI()">🔍 AI智能推荐</button>
             </div>
-            <div class="loading" id="loading"><div class="spinner"></div><p style="margin-top: 10px; color: #666;">AI正在分析需求并生成推荐...</p></div>
-            <div class="ai-result" id="aiResult">
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p style="margin-top: 10px; color: #666;">AI正在分析需求并生成推荐...</p>
+            </div>
+
+            <div class="result-container" id="aiResult">
                 <h4>📋 教学计划推荐</h4>
                 <div id="aiResultContent"></div>
-                <div style="margin-top: 20px;"><button class="btn" onclick="exportToWord()">📥 导出为Word文档</button></div>
+                <div style="margin-top: 20px;">
+                    <button class="btn" onclick="exportToWord()">📥 导出为Word文档</button>
+                </div>
             </div>
         </div>
 
+        <!-- 使用说明 -->
         <div class="card">
             <h2>📖 使用说明</h2>
             <div class="instructions">
                 <h4>快速开始：</h4>
                 <ol>
-                    <li><strong>录入数据</strong>：点击「管理后台」，在飞书表格中录入师资和课程信息</li>
-                    <li><strong>批量导入</strong>：下载Excel模板，填写后导入数据</li>
-                    <li><strong>AI推荐</strong>：在上方描述您的培训需求，AI自动生成教学计划</li>
+                    <li><strong>教师搜索</strong>：在教师搜索框中输入姓名，查看教师详细信息、简介和课程</li>
+                    <li><strong>课程主题搜索</strong>：输入主题关键词，AI自动匹配合适的课程和教师</li>
+                    <li><strong>AI智能推荐</strong>：描述您的培训需求，AI自动生成教学计划</li>
                     <li><strong>导出文档</strong>：点击「导出Word」获取正式文档</li>
                 </ol>
             </div>
             <div style="margin-top: 15px;">
-                <a href="https://hcn7s98tr3ug.feishu.cn/base/OFI3b6Os7azr0osspHncFcVjnqh" target="_blank" class="btn">📊 打开管理后台</a>
+                <a href="https://hcn7s98tr3ug.feishu.cn/base/OFI3b6Os7azr0osspHncFcVjnqh" target="_blank" class="btn">
+                    📊 打开管理后台
+                </a>
             </div>
         </div>
     </div>
 
-    <div class="footer"><p>青岛城市基层党建实训基地师资库 · 技术支持</p></div>
+    <div class="footer">
+        <p>青岛城市基层党建实训基地师资库 · 技术支持</p>
+    </div>
 
     <script>
-        function useExample(element) { document.getElementById('searchInput').value = element.textContent; }
+        // 模拟数据库数据
+        const teacherData = {
+            '王存福': {
+                name: '王存福',
+                source: '青岛市委党校',
+                level: '教授',
+                introduction: '青岛市委党校教授，长期从事马克思主义理论、习近平新时代中国特色社会主义思想教学研究',
+                contact: '138-0000-0001',
+                courses: [
+                    {name: '《全面把握深刻领会习近平新时代中国特色社会主义思想》', type: '理论课'},
+                    {name: '《锲而不舍落实中央八项规定精神》', type: '理论课'},
+                    {name: '《深入学习贯彻党的二十届四中全会精神》', type: '理论课'},
+                    {name: '《社会主义发展史》', type: '理论课'},
+                    {name: '《坚定共产党人的理想信念》', type: '理论课'},
+                    {name: '《高效执行力的培养与提升》', type: '理论课'},
+                    {name: '《创新思维能力培养与提升》', type: '理论课'},
+                    {name: '《马克思<政治经济学批判序言>导读》', type: '理论课'},
+                    {name: '《<中国共产党章程>导读》', type: '理论课'},
+                    {name: '《中国特色社会主义理论体系基本文献导读》', type: '理论课'}
+                ]
+            },
+            '徐文涛': {
+                name: '徐文涛',
+                source: '青岛市委党校',
+                level: '教授',
+                introduction: '青岛市委党校教授，研究方向为文化思想、中华优秀传统文化与理想信念教育',
+                contact: '138-0000-0002',
+                courses: [
+                    {name: '《中国共产党与中华民族伟大复兴》', type: '理论课'},
+                    {name: '《习近平文化思想》', type: '理论课'},
+                    {name: '《汲取优秀传统文化滋养 坚定共产党人理想信念》', type: '理论课'},
+                    {name: '《党员干部家风建设》', type: '理论课'},
+                    {name: '《坚持和发展马克思主义必须同中华优秀传统文化相结合》', type: '理论课'},
+                    {name: '《从四个自信谈中国共产党人的初心和使命》', type: '理论课'},
+                    {name: '《牢牢掌握党对意识形态工作领导权》', type: '理论课'}
+                ]
+            },
+            '刘小利': {
+                name: '刘小利',
+                source: '青岛市委党校',
+                level: '副教授',
+                introduction: '青岛市委党校副教授，专注领导方法、执行力培养与基层党建实务',
+                contact: '138-0000-0003',
+                courses: [
+                    {name: '《领导方法与领导艺术》', type: '理论课'},
+                    {name: '《执行力的培养与提升》', type: '理论课'},
+                    {name: '《做称职的中层干部》', type: '理论课'},
+                    {name: '《领导力的培养与提升》', type: '理论课'},
+                    {name: '《如何成就有效沟通》', type: '理论课'},
+                    {name: '《中国共产党章程》导读', type: '理论课'},
+                    {name: '《党支部书记的工作方法和领导艺术》', type: '理论课'},
+                    {name: '《管理人员性格特质测评与潜质开发》', type: '理论课'},
+                    {name: '《中国共产党支部工作条例（试行）》解读', type: '理论课'},
+                    {name: '《深入学习贯彻《中国共产党纪律处分条例》》', type: '理论课'},
+                    {name: '《深学细悟习近平新时代中国特色社会主义思想》', type: '理论课'}
+                ]
+            },
+            '毛振鹏': {
+                name: '毛振鹏',
+                source: '青岛市委党校',
+                level: '教授',
+                introduction: '青岛市委党校教授，研究方向为习近平新时代中国特色社会主义思想、经济思想、国家战略',
+                contact: '138-0000-0004',
+                courses: [
+                    {name: '《习近平新时代中国特色社会主义思想》', type: '理论课'},
+                    {name: '《习近平经济思想》', type: '理论课'},
+                    {name: '《习近平总书记关于树立和践行正确政绩观的重要论述》', type: '理论课'},
+                    {name: '《国家和省市十五五规划解读》', type: '理论课'},
+                    {name: '《加强党的纪律建设》', type: '理论课'},
+                    {name: '《中国共产党百年奋斗的伟大成就和宝贵经验》', type: '理论课'},
+                    {name: '《加强国有企业党建工作》', type: '理论课'},
+                    {name: '《坚定不移的做好意识形态工作》', type: '理论课'},
+                    {name: '《青岛市情和高质量发展》', type: '理论课'},
+                    {name: '《用好AI工具、提升工作效能》', type: '理论课'}
+                ]
+            },
+            '孙涛': {
+                name: '孙涛',
+                source: '青岛市委党校',
+                level: '副教授',
+                introduction: '青岛市委党校副教授，专注意识形态、政治建设、社会治理、国家总体安全观研究',
+                contact: '138-0000-0005',
+                courses: [
+                    {name: '《加强新时代党员干部意识形态能力建设》', type: '理论课'},
+                    {name: '《当前我国意识形态领域的形势与对策》', type: '理论课'},
+                    {name: '《中国共产党意识形态工作发展历程和宝贵经验》', type: '理论课'},
+                    {name: '《舆情引导与意识形态》', type: '理论课'},
+                    {name: '《习近平总书记关于政治建设的重要论述》', type: '理论课'},
+                    {name: '《发展全过程人民民主》', type: '理论课'},
+                    {name: '《习近平总书记关于总体国家安全观的重要论述》', type: '理论课'},
+                    {name: '《习近平新时代中国特色社会主义思想概论》', type: '理论课'},
+                    {name: '《坚定制度自信 推进国家治理体系和治理能力现代化》', type: '理论课'},
+                    {name: '《坚持和完善共建共治共享的社会治理制度》', type: '理论课'},
+                    {name: '《二十届四中全会解读》', type: '理论课'}
+                ]
+            },
+            '朱艳鑫': {
+                name: '朱艳鑫',
+                source: '青岛市委党校',
+                level: '副教授',
+                introduction: '青岛市委党校副教授，研究方向为生态文明、安全生产、媒体素养、应急管理',
+                contact: '138-0000-0006',
+                courses: [
+                    {name: '《习近平新时代中国特色社会主义思想概论》', type: '理论课'},
+                    {name: '《习近平生态文明思想》', type: '理论课'},
+                    {name: '《习近平总书记关于安全生产的重要论述》', type: '理论课'},
+                    {name: '《习近平总书记关于意识形态工作的重要论述》', type: '理论课'},
+                    {name: '《树立和践行正确政绩观》', type: '理论课'},
+                    {name: '《中国式现代化的理论体系与实践指向》', type: '理论课'},
+                    {name: '《提高舆论引导能力》', type: '理论课'},
+                    {name: '《增强防范化解重大风险本领》', type: '理论课'},
+                    {name: '《突发事件应对与舆论引导》', type: '理论课'},
+                    {name: '《提高服务群众本领》', type: '理论课'}
+                ]
+            }
+        };
 
+        const topicData = [
+            {topic: '四中全会', courses: [
+                {name: '《深入学习贯彻党的二十届四中全会精神》', teacher: '王存福', source: '青岛市委党校', level: '教授', type: '理论课', contact: '138-0000-0001'},
+                {name: '《党的二十届四中全会精神解读》', teacher: '孙增德', source: '青岛市委党校', level: '副教授', type: '理论课', contact: '138-0000-0007'},
+                {name: '《在承前启后中确保基本实现社会主义现代化取得决定性进展的总动员和总部署——深入学习领会党的二十届四中全会精神》', teacher: '刘晋祎', source: '青岛市委党校', level: '副教授', type: '理论课', contact: '138-0000-0008'},
+                {name: '《二十届四中全会解读》', teacher: '孙涛', source: '青岛市委党校', level: '副教授', type: '理论课', contact: '138-0000-0005'}
+            ]},
+            {topic: '习近平文化思想', courses: [
+                {name: '《习近平文化思想》', teacher: '徐文涛', source: '青岛市委党校', level: '教授', type: '理论课', contact: '138-0000-0002'},
+                {name: '《习近平文化思想》', teacher: '荆晓燕', source: '青岛市委党校', level: '副教授', type: '理论课', contact: '138-0000-0009'}
+            ]},
+            {topic: '党纪学习教育', courses: [
+                {name: '《锲而不舍落实中央八项规定精神》', teacher: '王存福', source: '青岛市委党校', level: '教授', type: '理论课', contact: '138-0000-0001'},
+                {name: '《深入贯彻中央八项规定精神切实转变作风》', teacher: '王政堂', source: '青岛市委党校', level: '教授', type: '理论课', contact: '138-0000-0010'},
+                {name: '《贯彻落实中央八项规定精神 全面加强党的作风建设》', teacher: '刘晋祎', source: '青岛市委党校', level: '副教授', type: '理论课', contact: '138-0000-0008'},
+                {name: '《加强党的纪律建设》', teacher: '毛振鹏', source: '青岛市委党校', level: '教授', type: '理论课', contact: '138-0000-0004'}
+            ]},
+            {topic: '基层治理', courses: [
+                {name: '《加强和创新基层治理 打造共建共治共享的社会治理格局》', teacher: '孙涛', source: '青岛市委党校', level: '副教授', type: '理论课', contact: '138-0000-0005'},
+                {name: '《坚持和完善共建共治共享的社会治理制度》', teacher: '孙涛', source: '青岛市委党校', level: '副教授', type: '理论课', contact: '138-0000-0005'}
+            ]},
+            {topic: '政绩观', courses: [
+                {name: '《习近平总书记关于树立和践行正确政绩观的重要论述》', teacher: '王政堂', source: '青岛市委党校', level: '教授', type: '理论课', contact: '138-0000-0010'},
+                {name: '《习近平总书记关于树立和践行正确政绩观的重要论述》', teacher: '孙增德', source: '青岛市委党校', level: '副教授', type: '理论课', contact: '138-0000-0007'},
+                {name: '《树立和践行正确政绩观》', teacher: '孙增德', source: '青岛市委党校', level: '副教授', type: '理论课', contact: '138-0000-0007'},
+                {name: '《树立和践行正确政绩观》', teacher: '孙涛', source: '青岛市委党校', level: '副教授', type: '理论课', contact: '138-0000-0005'},
+                {name: '《树立和践行正确政绩观》', teacher: '朱艳鑫', source: '青岛市委党校', level: '副教授', type: '理论课', contact: '138-0000-0006'}
+            ]}
+        ];
+
+        // 教师搜索
+        function searchTeacher() {
+            const query = document.getElementById('teacherSearchInput').value.trim();
+            if (!query) {
+                alert('请输入教师姓名');
+                return;
+            }
+
+            document.getElementById('teacherLoading').classList.add('show');
+            document.getElementById('teacherResult').classList.remove('show');
+
+            setTimeout(() => {
+                document.getElementById('teacherLoading').classList.remove('show');
+                document.getElementById('teacherResult').classList.add('show');
+                
+                // 查找教师
+                let teacher = null;
+                for (let name in teacherData) {
+                    if (name.includes(query) || query.includes(name)) {
+                        teacher = teacherData[name];
+                        break;
+                    }
+                }
+
+                if (teacher) {
+                    const coursesHTML = teacher.courses.map(c => 
+                        '<tr><td>' + c.name + '</td><td>' + c.type + '</td></tr>'
+                    ).join('');
+
+                    const resultHTML = '<div class="teacher-info"><h5>教师信息</h5><p><strong>姓名：</strong>' + teacher.name + '</p><p><strong>师资来源：</strong>' + teacher.source + '</p><p><strong>职务等级：</strong>' + teacher.level + '</p><p><strong>联系方式：</strong>' + teacher.contact + '</p><p><strong>简介：</strong>' + teacher.introduction + '</p></div><h5 style="margin-top: 20px; color: #333;">可授课程</h5><table><tr><th>课程名称</th><th>课程类型</th></tr>' + coursesHTML + '</table>';
+                    
+                    document.getElementById('teacherResultContent').innerHTML = resultHTML;
+                } else {
+                    document.getElementById('teacherResultContent').innerHTML = '<p style="text-align: center; color: #999;">未找到该教师信息</p>';
+                }
+            }, 1000);
+        }
+
+        // 课程主题搜索
+        function searchTopic() {
+            const query = document.getElementById('topicSearchInput').value.trim();
+            if (!query) {
+                alert('请输入课程主题');
+                return;
+            }
+
+            document.getElementById('topicLoading').classList.add('show');
+            document.getElementById('topicResult').classList.remove('show');
+
+            setTimeout(() => {
+                document.getElementById('topicLoading').classList.remove('show');
+                document.getElementById('topicResult').classList.add('show');
+                
+                // 查找匹配的主题
+                let matchedCourses = [];
+                for (let item of topicData) {
+                    if (item.topic.includes(query) || query.includes(item.topic)) {
+                        matchedCourses = item.courses;
+                        break;
+                    }
+                }
+
+                // 如果没有直接匹配，尝试从所有课程中模糊匹配
+                if (matchedCourses.length === 0) {
+                    for (let name in teacherData) {
+                        teacherData[name].courses.forEach(c => {
+                            if (c.name.includes(query)) {
+                                matchedCourses.push({
+                                    name: c.name,
+                                    teacher: teacherData[name].name,
+                                    source: teacherData[name].source,
+                                    level: teacherData[name].level,
+                                    type: c.type,
+                                    contact: teacherData[name].contact
+                                });
+                            }
+                        });
+                    }
+                }
+
+                if (matchedCourses.length > 0) {
+                    const coursesHTML = matchedCourses.map(c => 
+                        '<tr><td>' + c.name + '</td><td>' + c.teacher + '</td><td>' + c.source + '</td><td>' + c.level + '</td><td>' + c.type + '</td><td>' + c.contact + '</td></tr>'
+                    ).join('');
+
+                    const resultHTML = '<table><tr><th>课程名称</th><th>教师姓名</th><th>师资来源</th><th>职务等级</th><th>课程类型</th><th>联系方式</th></tr>' + coursesHTML + '</table>';
+                    
+                    document.getElementById('topicResultContent').innerHTML = resultHTML;
+                } else {
+                    document.getElementById('topicResultContent').innerHTML = '<p style="text-align: center; color: #999;">未找到相关课程，请尝试其他关键词</p>';
+                }
+            }, 1500);
+        }
+
+        // 使用主题示例
+        function useTopicExample(element) {
+            document.getElementById('topicSearchInput').value = element.textContent;
+        }
+
+        // 示例查询
+        function useExample(element) {
+            document.getElementById('searchInput').value = element.textContent;
+        }
+
+        // AI搜索功能
         function searchWithAI() {
             const query = document.getElementById('searchInput').value.trim();
-            if (!query) { alert('请输入需求描述'); return; }
+            if (!query) {
+                alert('请输入需求描述');
+                return;
+            }
+
             document.getElementById('loading').classList.add('show');
             document.getElementById('aiResult').classList.remove('show');
+
             setTimeout(() => {
                 document.getElementById('loading').classList.remove('show');
                 document.getElementById('aiResult').classList.add('show');
-                const resultHTML = `
-                    <p><strong>根据您的需求「${query}」，为您推荐以下教学计划：</strong></p>
-                    <h5 style="margin-top: 20px; color: #333;">☀️ 上午安排</h5>
-                    <table><tr><th>时间</th><th>课程名称</th><th>教师</th></tr>
-                    <tr><td>9:00-9:30</td><td>开班仪式</td><td>待定</td></tr>
-                    <tr><td>9:30-12:00</td><td>国家和省市十五五规划解读</td><td>毛振鹏</td></tr></table>
-                    <h5 style="margin-top: 20px; color: #333;">🌤️ 下午安排</h5>
-                    <table><tr><th>时间</th><th>课程名称</th><th>教师</th></tr>
-                    <tr><td>13:30-15:00</td><td>马克思主义真理馆现场教学</td><td>待定</td></tr></table>
-                    <h5 style="margin-top: 20px; color: #333;">📝 备选课程</h5>
-                    <ul style="margin-left: 20px; line-height: 1.8;">
-                        <li>经略海洋，向海图强——青岛市如何以科技创新引领现代海洋经济发展</li>
-                        <li>青岛市纪律馆现场教学</li>
-                    </ul>
-                    <h5 style="margin-top: 20px; color: #333;">📖 推荐依据</h5>
-                    <p style="background: #f0f0f0; padding: 15px; border-radius: 5px; line-height: 1.6;">根据《党员干部教育培训工作条例》和青岛市党员教育培训要求，结合入党积极分子培训需求，安排上午理论学习、下午现场观摩的课程结构，符合成人学习规律，确保培训效果。</p>
-                `;
+                
+                const resultHTML = '<p><strong>根据您的需求「' + query + '」，为您推荐以下教学计划：</strong></p><h5 style="margin-top: 20px; color: #333;">☀️ 上午安排</h5><table><tr><th>时间</th><th>课程名称</th><th>教师</th></tr><tr><td>9:00-9:30</td><td>开班仪式</td><td>待定</td></tr><tr><td>9:30-12:00</td><td>国家和省市十五五规划解读</td><td>毛振鹏</td></tr></table><h5 style="margin-top: 20px; color: #333;">🌤️ 下午安排</h5><table><tr><th>时间</th><th>课程名称</th><th>教师</th></tr><tr><td>13:30-15:00</td><td>马克思主义真理馆现场教学</td><td>待定</td></tr></table><h5 style="margin-top: 20px; color: #333;">📝 备选课程</h5><ul style="margin-left: 20px; line-height: 1.8;"><li>经略海洋，向海图强——青岛市如何以科技创新引领现代海洋经济发展</li><li>青岛市纪律馆现场教学</li></ul><h5 style="margin-top: 20px; color: #333;">📖 推荐依据</h5><p style="background: #f0f0f0; padding: 15px; border-radius: 5px; line-height: 1.6;">根据《党员干部教育培训工作条例》和青岛市党员教育培训要求，结合入党积极分子培训需求，安排上午理论学习、下午现场观摩的课程结构，符合成人学习规律，确保培训效果。</p>';
+                
                 document.getElementById('aiResultContent').innerHTML = resultHTML;
             }, 1500);
         }
 
+        // 导出Word功能
         function exportToWord() {
             const content = document.getElementById('aiResultContent').innerHTML;
-            const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body { font-family: 'SimSun', serif; padding: 40px; }h1 { text-align: center; font-size: 18pt; margin-bottom: 30px; }table { width: 100%; border-collapse: collapse; margin: 15px 0; }th, td { border: 1px solid #000; padding: 8px; text-align: left; }th { background: #f0f0f0; }</style></head><body><h1>市南区金湖路街道培训班建议方案</h1><p><strong>授课时间：</strong>2026年6月18日</p>${content}</body></html>`;
+            
+            const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body { font-family: "SimSun", serif; padding: 40px; }h1 { text-align: center; font-size: 18pt; margin-bottom: 30px; }h2 { font-size: 14pt; margin-top: 25px; }table { width: 100%; border-collapse: collapse; margin: 15px 0; }th, td { border: 1px solid #000; padding: 8px; text-align: left; }th { background: #f0f0f0; }</style></head><body><h1>市南区金湖路街道退休干部及"两新组织"党组织书记培训班<br>建议方案</h1><p><strong>授课时间：</strong>2026年6月18日</p>' + content + '</body></html>';
+            
             const blob = new Blob([html], { type: 'application/msword' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url; a.download = '教学计划建议.doc'; a.click();
+            a.href = url;
+            a.download = '教学计划建议.doc';
+            a.click();
             URL.revokeObjectURL(url);
         }
 
+        // 页面加载时获取数据统计
         window.onload = function() {
             document.getElementById('teacherCount').textContent = '12';
-            document.getElementById('courseCount').textContent = '100';
+            document.getElementById('courseCount').textContent = '134';
         };
     </script>
 </body>
